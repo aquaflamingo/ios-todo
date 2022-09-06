@@ -84,9 +84,12 @@ extension TodoListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = items[indexPath.row]
  
-        let isDone = item.done
+//        let isDone = item.done
+//
+//        items[indexPath.row].done = !isDone
         
-        items[indexPath.row].done = !isDone
+        items.remove(at: indexPath.row)
+        ctx.delete(item)
         
         tableView.reloadData()
         
