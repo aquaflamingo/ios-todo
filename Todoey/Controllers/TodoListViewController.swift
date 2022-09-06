@@ -1,10 +1,13 @@
 import UIKit
+import CoreData
 
 class TodoListViewController: UITableViewController {
     
     var items: [TodoItem] = []
     let defaults = UserDefaults()
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    let ctx = ((UIApplication).shared.delegate as! AppDelegate).persistentContainer.viewContext
+            
     
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
         var textField = UITextField()
@@ -18,7 +21,9 @@ class TodoListViewController: UITableViewController {
         }
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            let i = TodoItem(textField.text!, false)
+            let i = TodoItem(context: self.ctx)
+            i.title = textField.text!
+            i.done = false
             
             self.items.append(i)
                 
@@ -34,30 +39,25 @@ class TodoListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        items.append(TodoItem("TODO1", false))
-        items.append(TodoItem("TODO2", false))
-        items.append(TodoItem("TODO3", false))
-        
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+
         load()
     }
     
     func save() {
-        let encoder  = PropertyListEncoder()
         do {
-            let d = try encoder.encode(self.items)
-            try d.write(to: self.dataFilePath!)
-        } catch { print("failed to save to file ")}
+            try self.ctx.save()
+        } catch {
+            print("Error saving with context")
+        }
     }
     
     func load() {
-        if let d = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-                items = try decoder.decode([TodoItem].self, from: d)
-            } catch {
-                print("failed to deserialize")
-            }
+        let req : NSFetchRequest<TodoItem> = TodoItem.fetchRequest()
+        do {
+            items = try ctx.fetch(req)
+        } catch {
+            print("error fetching objects: \(error)")
         }
     }
 }
