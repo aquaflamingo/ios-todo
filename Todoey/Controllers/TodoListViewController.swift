@@ -52,13 +52,14 @@ class TodoListViewController: UITableViewController {
         }
     }
     
-    func load() {
-        let req : NSFetchRequest<TodoItem> = TodoItem.fetchRequest()
+    func load(with req: NSFetchRequest<TodoItem> = TodoItem.fetchRequest()) {
         do {
             items = try ctx.fetch(req)
         } catch {
             print("error fetching objects: \(error)")
         }
+                
+        tableView.reloadData()
     }
 }
 
@@ -84,16 +85,40 @@ extension TodoListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = items[indexPath.row]
  
-//        let isDone = item.done
-//
-//        items[indexPath.row].done = !isDone
-        
-        items.remove(at: indexPath.row)
-        ctx.delete(item)
+        let isDone = item.done
+
+        items[indexPath.row].done = !isDone
         
         tableView.reloadData()
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension TodoListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Reload the tableview with text for query
+        
+        let req: NSFetchRequest<TodoItem> = TodoItem.fetchRequest()
+        
+        // TODO: sanitize input
+        let searchText = searchBar.text
+        
+        req.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchText!)
+        req.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        load(with: req)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            load()
+            
+            // Dismiss the keyboard after clicking
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
     }
 }
 
