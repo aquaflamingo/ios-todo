@@ -52,6 +52,44 @@
             <point key="canvasLocation" x="1868" y="106"/>
         </scene>
         <!--Todo-->
+        <scene sceneID="GrN-DY-NJc">
+            <objects>
+                <tableViewController id="IqM-YW-OGA" customClass="CategoryViewController" customModule="Todoey" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="tFj-PB-DsT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="Unt-kU-IUy">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Unt-kU-IUy" id="yTR-ci-B0L">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="IqM-YW-OGA" id="OSx-WC-3Mg"/>
+                            <outlet property="delegate" destination="IqM-YW-OGA" id="9bv-go-Vh0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Todo" id="dIr-C1-rzm">
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="0vP-zQ-kKz">
+                            <connections>
+                                <action selector="addNewCategoryClicked:" destination="IqM-YW-OGA" id="WOK-jp-aES"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="oCz-6n-lJh" kind="show" identifier="GoToItems" id="3Lk-Np-SAZ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rES-j9-cun" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="841" y="68"/>
+        </scene>
+        <!--Todo-->
         <scene sceneID="Vkd-cK-7pr">
             <objects>
                 <navigationController title="Todo" automaticallyAdjustsScrollViewInsets="NO" id="CFV-fz-rOX" sceneMemberID="viewController">
@@ -64,12 +102,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="oCz-6n-lJh" kind="relationship" relationship="rootViewController" id="rDz-Hn-nvT"/>
+                        <segue destination="IqM-YW-OGA" kind="relationship" relationship="rootViewController" id="wb9-KF-9wP"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="trn-wX-JS9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="886.95652173913049" y="106.47321428571428"/>
+            <point key="canvasLocation" x="-10" y="68"/>
         </scene>
     </scenes>
     <resources>

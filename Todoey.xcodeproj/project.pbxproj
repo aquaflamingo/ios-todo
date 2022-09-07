@@ -14,6 +14,7 @@
 		EB2BE506239524DC00FB933B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE504239524DC00FB933B /* LaunchScreen.storyboard */; };
 		F159C8D428C673EA006F3D14 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F159C8D328C673EA006F3D14 /* TodoItem.swift */; };
 		F1D919C828C79CFD00882F0B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F1D919C628C79CFD00882F0B /* DataModel.xcdatamodeld */; };
+		F1FE19C328C90E9700FB90E6 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE19C228C90E9700FB90E6 /* CategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		EB2BE507239524DC00FB933B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F159C8D328C673EA006F3D14 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		F1D919C728C79CFD00882F0B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		F1FE19C228C90E9700FB90E6 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				EB2BE4FD239524DB00FB933B /* TodoListViewController.swift */,
+				F1FE19C228C90E9700FB90E6 /* CategoryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1FE19C328C90E9700FB90E6 /* CategoryViewController.swift in Sources */,
 				EB2BE4FE239524DB00FB933B /* TodoListViewController.swift in Sources */,
 				F1D919C828C79CFD00882F0B /* DataModel.xcdatamodeld in Sources */,
 				F159C8D428C673EA006F3D14 /* TodoItem.swift in Sources */,
